@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" class="wedding-invite">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#44121d" />
+  <title>Divesh &amp; Tamanna - Royal Wedding Invitation</title>
+  <meta name="description" content="Two families, countless blessings, and a lifetime of togetherness. You are cordially invited by Shri Brahamdutt Jangir &amp; family to celebrate the royal wedding of Divesh &amp; Tamanna at Sirsa, Haryana." />
+  
+  <!-- Open Graph Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Divesh &amp; Tamanna - Royal Wedding Invitation" />
+  <meta property="og:description" content="Two families, countless blessings, and a lifetime of togetherness. Friday, 11th December 2026 • Sirsa (Haryana)." />
+  <meta property="og:image" content="assets/images/hero-divesh-tamanna.jpg" />
+
+  <!-- Google Fonts: Royal Script, Serif & Devnagari Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Great+Vibes&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Pinyon+Script&family=Rozha+One&family=Sacramento&family=Tenor+Sans&family=Tiro+Devanagari+Hindi:ital@0;1&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="is-locked">
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- FIXED GLOBAL CONTROLS (ALWAYS VISIBLE & ACCESSIBLE)           -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+
+  <!-- 1. English / Hindi Language Toggle Button (Top-Right) -->
+  <div class="fixed-lang-wrapper">
+    <button id="lang-toggle-btn" class="lang-switcher-pill" aria-label="Toggle Language English or Hindi">
+      <span class="lang-opt active" data-lang="en">English</span>
+      <span class="lang-opt" data-lang="hi">हिंदी</span>
+    </button>
+  </div>
+
+  <!-- 2. Floating Music / Speaker Button (Bottom-Right) -->
+  <div class="fixed-music-wrapper">
+    <button id="music-toggle-btn" class="floating-music-btn" aria-label="Toggle Background Music">
+      <div class="music-pulse-ring"></div>
+      <svg class="music-icon sound-on" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+      <svg class="music-icon sound-off" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none;">
+        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+      </svg>
+      <span class="music-tooltip" data-i18n="music_toggle_hint">Music</span>
+    </button>
+  </div>
+
+  <!-- Audio Element for Continuous Music (Starts from 0:20 of Song) -->
+  <audio id="wedding-music" loop preload="auto">
+    <source src="assets/audio/wedding-song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- PRELOADER SCREEN                                              -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="preloader" class="preloader-overlay">
+    <div class="preloader-content">
+      <div class="gold-monogram-emblem">
+        <img src="assets/images/logo-divesh-tamanna.png" alt="Divesh &amp; Tamanna Logo" class="preloader-brand-logo" />
+      </div>
+      <p class="preloader-couple">Divesh <span class="amp">&amp;</span> Tamanna</p>
+      <div class="preloader-gold-line"></div>
+      <p class="preloader-sub" data-i18n="opening_welcome">The Royal Wedding Celebration</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- ROYAL ENVELOPE GATE: VIDEO PAUSED ON FRAME 1 -> TAP TO OPEN   -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="envelope-gate" class="envelope-gate">
+    <div class="envelope-video-stage">
+      <!-- Envelope Opening Video (Pauses on First Frame, Plays in Full on Tap) -->
+      <video
+        id="envelope-video"
+        class="envelope-video"
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        poster="assets/images/env_frame_01.jpg"
+      >
+        <source src="assets/video/envelope-open.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Golden Vortex Portal Effect on Open -->
+      <div class="vortex-portal" id="vortex-portal">
+        <div class="vortex-spiral s1"></div>
+        <div class="vortex-spiral s2"></div>
+        <div class="vortex-spiral s3"></div>
+      </div>
+
+      <!-- Tap to Reveal Overlay on Top of the First Frame -->
+      <div class="envelope-tap-overlay" id="envelope-tap-prompt">
+        <div class="gate-royal-crest">
+          <img src="assets/images/logo-divesh-tamanna.png" alt="Divesh &amp; Tamanna" class="gate-logo-img" />
+        </div>
+
+        <div class="gate-names-block">
+          <span class="gate-shubh-kicker" data-i18n="shubh_vivah_kicker">॥ शुभ विवाह ॥</span>
+          <h1 class="gate-couple-names">Divesh <span class="gate-amp">&amp;</span> Tamanna</h1>
+          <p class="gate-sub-date">11th December, 2026 • Sirsa (Haryana)</p>
+        </div>
+
+        <!-- Luxury Wax Seal Button with Pulsing Wave Rings -->
+        <div class="wax-seal-btn" id="wax-seal-btn" role="button" aria-label="Tap to Open Invitation" tabindex="0">
+          <div class="wax-seal-ring r1"></div>
+          <div class="wax-seal-ring r2"></div>
+          <div class="wax-seal-disc">
+            <span class="wax-seal-script">d ♡ t</span>
+          </div>
+        </div>
+
+        <p class="gate-tap-prompt" data-i18n="tap_to_reveal">Tap to Open Invitation</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Falling Flower Petals Canvas Background (Dainty & Delicate Size) -->
+  <canvas id="petals-canvas" class="petals-canvas"></canvas>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- FLOATING IN-PAGE "SCROLL DOWN" PILL                           -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="scroll-down-floating" id="scroll-down-btn">
+    <span data-i18n="scroll_down">SCROLL DOWN</span>
+    <svg class="hand-wave-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+      <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+      <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+      <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+    </svg>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- MAIN INVITATION CARD CONTENT                                  -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <main class="main-card-container">
+
+    <!-- 1. HERO PALACE ARCH (FULL BLEED ROYAL ARCH & SKY PRESENTATION) -->
+    <section class="section hero-jharokha-section">
+      <div class="hero-stage-box">
+        <img src="assets/images/hero-divesh-tamanna.png" alt="Divesh &amp; Tamanna - Royal Wedding" class="hero-bg-photo interactive-tap-photo" />
+      </div>
+    </section>
+
+    <!-- 2. SAVE THE DATE & SCRATCH CARD (PLACED DIRECTLY AFTER HERO SECTION) -->
+    <section class="section scratch-card-section" id="scratch-section">
+      <div class="section-kicker" data-i18n="save_the_date">SAVE THE DATE</div>
+      <h2 class="section-script-title" data-i18n="reveal_our_big_day">Reveal Our Big Day</h2>
+      <p class="section-instruction" data-i18n="scratch_instruction">Scratch the card to reveal</p>
+
+      <!-- Scratch Card Box -->
+      <div class="scratch-card-wrapper">
+        <div class="scratch-card-box" id="scratch-card">
+          <!-- Secret Date Underneath (Matching Dec 11, 2026) -->
+          <div class="scratch-secret-content">
+            <span class="secret-weekday" data-i18n="secret_weekday">FRIDAY</span>
+            <div class="secret-date-row">
+              <span class="secret-mon" data-i18n="secret_month">DEC</span>
+              <span class="secret-dash">—</span>
+              <span class="secret-day-num">11</span>
+              <span class="secret-dash">—</span>
+              <span class="secret-year">2026</span>
+            </div>
+            <div class="secret-gold-gem">◆</div>
+          </div>
+
+          <!-- HTML5 Scratch Canvas Layer -->
+          <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
+
+          <!-- Coach Tap/Scratch Hint -->
+          <div class="scratch-coach" id="scratch-coach">
+            <svg class="coach-finger-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+              <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+              <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+              <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+            </svg>
+            <span class="coach-label" data-i18n="scratch_here">Scratch Here</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Romantic Subtitle -->
+      <p class="journey-hindi-lead" data-i18n="journey_lead">A beautiful journey begins...</p>
+
+      <!-- 4-Tile Countdown (Default in English, toggles dynamically) -->
+      <div class="video-countdown-grid" id="wedding-countdown">
+        <div class="cd-tile">
+          <div class="cd-num" id="cd-days">--</div>
+          <span class="cd-txt" data-i18n="days_txt">DAYS</span>
+        </div>
+        <div class="cd-tile">
+          <div class="cd-num" id="cd-hours">--</div>
+          <span class="cd-txt" data-i18n="hours_txt">HOURS</span>
+        </div>
+        <div class="cd-tile">
+          <div class="cd-num" id="cd-minutes">--</div>
+          <span class="cd-txt" data-i18n="minutes_txt">MINS</span>
+        </div>
+        <div class="cd-tile">
+          <div class="cd-num" id="cd-seconds">--</div>
+          <span class="cd-txt" data-i18n="seconds_txt">SECS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. FORMAL INVITATION CARD (HOSTED BY BRAHAMDUTT JANGIR & MANJU DEVI) -->
+    <section class="section formal-card-section">
+      <div class="formal-card-code-frame">
+        <!-- Gold Ornate Corner Accents -->
+        <div class="corner-gold top-left"></div>
+        <div class="corner-gold top-right"></div>
+        <div class="corner-gold bottom-left"></div>
+        <div class="corner-gold bottom-right"></div>
+
+        <div class="formal-card-inner-border">
+          <!-- Sacred Lord Ganesha Artwork Provided by Family -->
+          <div class="ganesha-emblem-wrap">
+            <img src="assets/images/ganesha-sacred.png" alt="॥ श्री गणेशाय नमः ॥" class="ganesha-sacred-img" />
+          </div>
+
+          <h3 class="formal-shri-ganesh" data-i18n="shri_ganesh_mantra">॥ श्री गणेशाय नमः ॥</h3>
+
+          <div class="formal-blessings-block">
+            <p class="formal-blessing-lead" data-i18n="blessing_grandparents">With the heavenly blessings of</p>
+            <p class="formal-elders-names">
+              Late Smt. Savitri Devi &amp; Shri Surajbhan Jangir<br />
+              &amp; Smt. Bhagwani Devi &amp; Late Shri Rati Ram Jangir
+            </p>
+            <p class="formal-invite-text" data-i18n="formal_invite_line">
+              <strong>Smt. Manju Devi &amp; Shri Brahamdutt Jangir</strong><br />
+              joyfully invite you to celebrate the royal wedding ceremony of their beloved daughter
+            </p>
+          </div>
+
+          <!-- Bride Name First (Bride's family hosting from Sirsa) -->
+          <div class="formal-couple-highlight">
+            <h2 class="formal-person-name bride-name">Tamanna</h2>
+            <p class="formal-parentage" data-i18n="bride_parents_line">
+              Daughter of <strong>Smt. Manju Devi &amp; Shri Brahamdutt Jangir</strong>
+            </p>
+            <p class="formal-hometown">Sirsa (Haryana)</p>
+          </div>
+
+          <div class="formal-weds-script">
+            <span class="weds-flourish">—</span>
+            <span class="weds-word" data-i18n="weds_label">weds</span>
+            <span class="weds-flourish">—</span>
+          </div>
+
+          <!-- Groom Name -->
+          <div class="formal-couple-highlight">
+            <h2 class="formal-person-name groom-name">Divesh</h2>
+            <p class="formal-parentage" data-i18n="groom_parents_line">
+              Son of <strong>Smt. Anita Devi &amp; Shri Mahavir Prasad Jangir</strong>
+            </p>
+            <p class="formal-hometown">Nangli Sakrawati, Anand Vihar, New Delhi</p>
+          </div>
+
+          <div class="gold-flourish-divider">
+            <i></i><span>❖</span><i></i>
+          </div>
+
+          <!-- Date & Mandap Venue Highlight -->
+          <div class="formal-venue-box">
+            <p class="formal-event-day" data-i18n="formal_date_lead">Friday, 11th December, 2026</p>
+            <p class="formal-auspicious-times">
+              Baraat: <strong>07:15 PM</strong> &bull; Hast Melap / Phere: <strong>08:15 PM</strong>
+            </p>
+            <p class="formal-venue-name">Maharaj Marriage Palace</p>
+            <p class="formal-venue-address">Dabwali Road, Sirsa (Haryana)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. OUR BEAUTIFUL MOMENTS GALLERY -->
+    <section class="section moments-section">
+      <div class="section-kicker" data-i18n="glimpse_kicker">A GLIMPSE OF US</div>
+      <h2 class="section-script-title" data-i18n="moments_title">Our Beautiful Moments</h2>
+
+      <div class="moments-arch-deck-wrap">
+        <div class="moments-deck" id="photo-deck">
+          <div class="moment-arch-card active" data-index="0">
+            <img src="assets/images/moment-kiss.jpg" alt="Divesh &amp; Tamanna - Moments" class="moment-img" />
+          </div>
+          <div class="moment-arch-card" data-index="1">
+            <img src="assets/images/gallery-2.jpg" alt="Divesh &amp; Tamanna - Pre-wedding" class="moment-img" />
+          </div>
+          <div class="moment-arch-card" data-index="2">
+            <img src="assets/images/gallery-3.jpg" alt="Divesh &amp; Tamanna - Celebration" class="moment-img" />
+          </div>
+          <div class="moment-arch-card" data-index="3">
+            <img src="assets/images/gallery-4.jpg" alt="Divesh &amp; Tamanna - Togetherness" class="moment-img" />
+          </div>
+        </div>
+
+        <p class="moment-quote-line" data-i18n="moment_quote">
+          "A moment captured in time, forever in our hearts"
+        </p>
+
+        <!-- Carousel Dots -->
+        <div class="moment-dots" id="deck-dots">
+          <span class="mdot active" data-index="0"></span>
+          <span class="mdot" data-index="1"></span>
+          <span class="mdot" data-index="2"></span>
+          <span class="mdot" data-index="3"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. THE CELEBRATION UNFOLDS (ITINERARY CARDS) -->
+    <section class="section celebration-unfolds-section" id="events-section">
+      <div class="section-kicker" data-i18n="unfolds_kicker">THE CELEBRATION UNFOLDS</div>
+      <h2 class="section-script-title" data-i18n="celebrations_await">Celebrations Await</h2>
+      
+      <div class="gold-flourish-divider">
+        <i></i><span>❖</span><i></i>
+      </div>
+
+      <!-- Event 1: Haldi Ceremony -->
+      <article class="video-event-card">
+        <div class="event-date-kicker">07TH DECEMBER, 2026</div>
+        <h3 class="event-cursive-name" data-i18n="ev1_title">Haldi Ceremony</h3>
+        
+        <div class="event-art-box">
+          <img src="assets/images/event-haldi.jpg" alt="Haldi Ceremony" class="event-full-photo" />
+        </div>
+
+        <div class="event-floating-plate">
+          <div class="plate-date-row">
+            <span class="plate-weekday">MONDAY</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-num">7</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-month">DECEMBER</span>
+          </div>
+          <p class="plate-time">02:15 PM onwards</p>
+          <p class="plate-venue">At our residence</p>
+          <div class="plate-dress-code">
+            <span class="dress-label" data-i18n="dress_code_label">DRESS CODE</span>
+            <div class="swatches-flex">
+              <span class="swatch-dot" style="background:#e91e63;" title="Dark Pink"></span>
+              <span class="swatch-dot" style="background:#c2185b;" title="Magenta"></span>
+              <span class="swatch-dot" style="background:#ad1457;" title="Deep Rose"></span>
+              <span class="swatch-dot" style="background:#f48fb1;" title="Rose Petal"></span>
+            </div>
+          </div>
+          <p class="plate-dress-text">Dark Pink Festive Attire</p>
+          <a href="https://maps.app.goo.gl/cvquuWNQBK3XedJC9" target="_blank" rel="noopener noreferrer" class="plate-map-link">
+            <svg class="map-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="view_location">View on Map</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Event 2: Mehendi Ceremony -->
+      <article class="video-event-card" style="margin-top: 3.5rem;">
+        <div class="event-date-kicker">10TH DECEMBER, 2026</div>
+        <h3 class="event-cursive-name" data-i18n="ev2_title">Mehendi Ceremony</h3>
+        
+        <div class="event-art-box">
+          <img src="assets/images/event-mehendi.jpg" alt="Mehendi Ceremony" class="event-full-photo" />
+        </div>
+
+        <div class="event-floating-plate">
+          <div class="plate-date-row">
+            <span class="plate-weekday">THURSDAY</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-num">10</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-month">DECEMBER</span>
+          </div>
+          <p class="plate-time">10:15 AM onwards</p>
+          <p class="plate-venue">At our residence</p>
+          <div class="plate-dress-code">
+            <span class="dress-label" data-i18n="dress_code_label">DRESS CODE</span>
+            <div class="swatches-flex">
+              <span class="swatch-dot" style="background:#2e7d32;" title="Emerald Green"></span>
+              <span class="swatch-dot" style="background:#388e3c;" title="Leaf Green"></span>
+              <span class="swatch-dot" style="background:#4caf50;" title="Mehendi Green"></span>
+              <span class="swatch-dot" style="background:#81c784;" title="Pastel Green"></span>
+            </div>
+          </div>
+          <p class="plate-dress-text">All Shades of Green</p>
+          <a href="https://maps.app.goo.gl/cvquuWNQBK3XedJC9" target="_blank" rel="noopener noreferrer" class="plate-map-link">
+            <svg class="map-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="view_location">View on Map</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Event 3: Sangeet & Musical Night -->
+      <article class="video-event-card" style="margin-top: 3.5rem;">
+        <div class="event-date-kicker">10TH DECEMBER, 2026</div>
+        <h3 class="event-cursive-name" data-i18n="ev3_title">Sangeet &amp; Musical Night</h3>
+        
+        <div class="event-art-box">
+          <img src="assets/images/event-sangeet.jpg" alt="Sangeet and Musical Night" class="event-full-photo" />
+        </div>
+
+        <div class="event-floating-plate">
+          <div class="plate-date-row">
+            <span class="plate-weekday">THURSDAY</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-num">10</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-month">DECEMBER</span>
+          </div>
+          <p class="plate-time">08:15 PM onwards</p>
+          <p class="plate-venue">At our residence</p>
+          <div class="plate-dress-code">
+            <span class="dress-label" data-i18n="dress_code_label">DRESS CODE</span>
+            <div class="swatches-flex">
+              <span class="swatch-dot" style="background:#111111;" title="Classic Black"></span>
+              <span class="swatch-dot" style="background:#282828;" title="Onyx Black"></span>
+              <span class="swatch-dot" style="background:#ffd700;" title="Gold Shimmer"></span>
+              <span class="swatch-dot" style="background:#424242;" title="Charcoal"></span>
+            </div>
+          </div>
+          <p class="plate-dress-text">Glamorous Black &amp; Shimmer</p>
+          <a href="https://maps.app.goo.gl/cvquuWNQBK3XedJC9" target="_blank" rel="noopener noreferrer" class="plate-map-link">
+            <svg class="map-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="view_location">View on Map</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Event 4: Royal Wedding & Grand Reception Dinner -->
+      <article class="video-event-card" style="margin-top: 3.5rem;">
+        <div class="event-date-kicker">11TH DECEMBER, 2026</div>
+        <h3 class="event-cursive-name" data-i18n="ev4_title">Royal Wedding &amp; Reception</h3>
+        
+        <div class="event-art-box">
+          <img src="assets/images/event-wedding.jpg" alt="Royal Wedding Ceremony" class="event-full-photo" />
+        </div>
+
+        <div class="event-floating-plate">
+          <div class="plate-date-row">
+            <span class="plate-weekday">FRIDAY</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-num">11</span>
+            <span class="plate-pipe">|</span>
+            <span class="plate-month">DECEMBER</span>
+          </div>
+          <div class="plate-timings-grid">
+            <p class="plate-time-item">Baraat: <strong>07:15 PM</strong></p>
+            <p class="plate-time-item">Hast Melap / Phere: <strong>08:15 PM</strong></p>
+            <p class="plate-time-item">Grand Reception Dinner: <strong>08:15 PM onwards</strong></p>
+          </div>
+          <p class="plate-venue">Maharaj Marriage Palace, Dabwali Road, Sirsa (Haryana)</p>
+          <div class="plate-dress-code">
+            <span class="dress-label" data-i18n="dress_code_label">DRESS CODE</span>
+            <div class="swatches-flex">
+              <span class="swatch-dot" style="background:#8f1d2c;" title="Royal Maroon"></span>
+              <span class="swatch-dot" style="background:#c9963e;" title="Royal Gold"></span>
+              <span class="swatch-dot" style="background:#fdfbf7;" title="Ivory Cream"></span>
+              <span class="swatch-dot" style="background:#1b5e20;" title="Festive Splendor"></span>
+            </div>
+          </div>
+          <p class="plate-dress-text">Whatever you want to wear (Royal Indian Splendor)</p>
+          <a href="https://www.google.com/maps/search/?api=1&query=Maharaj+Marriage+Palace+Dabwali+Road+Sirsa+Haryana" target="_blank" rel="noopener noreferrer" class="plate-map-link">
+            <svg class="map-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="view_location">View on Map</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- 6. JOIN THE CELEBRATION (FEATURING COUPLE PORTRAIT CUTOUT) -->
+    <section class="section celebrate-with-us-section">
+      <div class="section-kicker" data-i18n="join_kicker">JOIN THE CELEBRATION</div>
+      <h2 class="section-script-title" data-i18n="celebrate_title">Celebrate With Us</h2>
+      
+      <p class="celebrate-lead-para" data-i18n="celebrate_para">
+        A celebration full of surprises, laughter, friendly rivalries, crazy dancing, and love that brings us all together. Come dressed to celebrate, ready to dance, and prepared for unforgettable memories!
+      </p>
+
+      <div class="celebrate-couple-img-box">
+        <img src="assets/images/couple-portrait-cutout.png" alt="Divesh &amp; Tamanna - Celebrate With Us" class="celebrate-couple-img interactive-tap-photo" />
+      </div>
+
+      <!-- 3 Outline Hearts -->
+      <div class="three-hearts-row">
+        <span class="heart-line"></span>
+        <svg class="gold-heart-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="heart-line"></span>
+        <svg class="gold-heart-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="heart-line"></span>
+        <svg class="gold-heart-outline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        <span class="heart-line"></span>
+      </div>
+    </section>
+
+    <!-- 7. THREE-CARD RSVP SECTION (HOST: BRAHAMDUTT JANGIR +91 7015970091) -->
+    <section class="section rsvp-three-card-section" id="rsvp-section">
+      <form id="rsvp-form" class="rsvp-cards-form">
+        
+        <!-- Card 1: Guest Details -->
+        <div class="white-rsvp-card">
+          <h3 class="card-cursive-heading" data-i18n="guest_details_title">Guest Details</h3>
+          
+          <div class="rsvp-field-box">
+            <label class="rsvp-caps-label" data-i18n="your_name_caps">YOUR NAME</label>
+            <input type="text" id="guest-name" class="clean-rsvp-input" placeholder="Full name" required />
+          </div>
+
+          <div class="rsvp-field-box">
+            <label class="rsvp-caps-label" data-i18n="phone_number_caps">PHONE NUMBER</label>
+            <input type="tel" id="guest-phone" class="clean-rsvp-input" placeholder="+91 00000 00000" required />
+          </div>
+        </div>
+
+        <!-- Card 2: Will you be attending? -->
+        <div class="white-rsvp-card">
+          <h3 class="card-cursive-heading" data-i18n="attending_question">Will you be attending?</h3>
+          <p class="card-italic-sub" data-i18n="kindly_let_us_know">Kindly let us know</p>
+          
+          <div class="pill-choice-row">
+            <label class="clean-choice-pill">
+              <input type="radio" name="attendance" value="Yes, I'll be there" checked />
+              <span class="choice-text" data-i18n="attending_yes_1">Yes, I'll be there</span>
+            </label>
+            <label class="clean-choice-pill">
+              <input type="radio" name="attendance" value="Definitely, I'll be there" />
+              <span class="choice-text" data-i18n="attending_yes_2">Definitely, I'll be there</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card 3: Just for Fun & DJ Song Selection -->
+        <div class="white-rsvp-card">
+          <h3 class="card-cursive-heading" data-i18n="just_for_fun_title">Just for Fun</h3>
+          <p class="card-italic-sub" data-i18n="fun_sub">A little something for the couple</p>
+
+          <p class="card-bold-q" data-i18n="team_question">Team Bride or Team Groom?</p>
+          <div class="pill-choice-row">
+            <label class="clean-choice-pill">
+              <input type="radio" name="team" value="Team Bride" checked />
+              <span class="choice-text" data-i18n="team_bride">Team Bride</span>
+            </label>
+            <label class="clean-choice-pill">
+              <input type="radio" name="team" value="Team Groom" />
+              <span class="choice-text" data-i18n="team_groom">Team Groom</span>
+            </label>
+          </div>
+
+          <div class="song-dj-block">
+            <label class="rsvp-caps-label" data-i18n="dj_song_label">WHICH SONG SHOULD THE DJ PLAY FOR YOU?</label>
+            <input type="text" id="dj-song-input" class="clean-rsvp-input" placeholder="Song name" />
+            
+            <p class="song-ideas-prompt" data-i18n="need_ideas_prompt">Need ideas? Tap one</p>
+            <div class="song-tags-flex">
+              <button type="button" class="song-tag-btn" data-song="Kaafi Hai Na">♫ Kaafi Hai Na</button>
+              <button type="button" class="song-tag-btn" data-song="London Thumakda">♫ London Thumakda</button>
+              <button type="button" class="song-tag-btn" data-song="Gallan Goodiyaan">♫ Gallan Goodiyaan</button>
+              <button type="button" class="song-tag-btn" data-song="Kala Chashma">♫ Kala Chashma</button>
+              <button type="button" class="song-tag-btn" data-song="Mehendi Laga Ke Rakhna">♫ Mehendi Laga Ke Rakhna</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bright Magenta/Crimson Gradient SEND RSVP Button -->
+        <button type="submit" class="send-rsvp-magenta-btn" id="submit-rsvp-btn">
+          <span data-i18n="send_rsvp_btn">SEND RSVP</span>
+        </button>
+      </form>
+
+      <!-- Hospitality Contacts & Quick Call/WhatsApp (Brahamdutt Jangir as Main Person) -->
+      <div class="host-contact-box">
+        <p class="host-contact-lead" data-i18n="contact_lead">For RSVP &amp; Hospitality, contact our Main Host</p>
+        
+        <div class="host-team-contacts">
+          <div class="host-person-item main-host-card">
+            <div class="host-identity-col">
+              <span class="host-role">Chief Host:</span>
+              <span class="host-name">Shri Brahamdutt Jangir</span>
+            </div>
+            <a href="tel:+917015970091" class="host-phone-pill">+91 7015970091</a>
+          </div>
+          <div class="host-person-item">
+            <div class="host-identity-col">
+              <span class="host-role">Hospitality Co-Lead:</span>
+              <span class="host-name">Pankaj Jangir</span>
+            </div>
+            <a href="tel:+919518144103" class="host-phone-pill">+91 9518144103</a>
+          </div>
+        </div>
+
+        <div class="host-actions-row">
+          <a href="tel:+917015970091" class="host-action-btn call-btn" data-i18n="call_btn">CALL HOST</a>
+          <a href="https://wa.me/917015970091?text=Hi%20Brahamdutt%20Ji!%20Regarding%20Divesh%20and%20Tamanna's%20Wedding..." target="_blank" rel="noopener noreferrer" class="host-action-btn wa-btn" data-i18n="whatsapp_btn">WHATSAPP HOST</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ROYAL VELVET FOOTER -->
+    <footer class="video-velvet-footer">
+      <!-- Poetic Lines -->
+      <div class="velvet-blessing-box">
+        <p class="blessing-line">Two families, countless blessings,</p>
+        <p class="blessing-line">and a lifetime of togetherness.</p>
+        <p class="blessing-line">With hearts full of joy, we invite you to join us as</p>
+        <p class="blessing-line">we celebrate the beginning of our forever. Your</p>
+        <p class="blessing-line">presence, blessings and love will make our</p>
+        <p class="blessing-line">celebration truly unforgettable.</p>
+      </div>
+
+      <div class="velvet-gold-flourish">
+        <i></i><span>❖</span><i></i>
+      </div>
+
+      <!-- Traditional Family Honor Rolls (Structured & Crystal Clear) -->
+      <div class="family-honor-grid">
+        
+        <!-- 1. Warm Welcome / Chief Hosts -->
+        <div class="family-section-block highlight-host-block">
+          <h4 class="family-block-kicker" data-i18n="warm_welcome_title">WARM WELCOME</h4>
+          <div class="family-sub-group">
+            <span class="family-sub-role">Bride's Parents (Sirsa):</span>
+            <p class="family-block-names main-hosts"><strong>Smt. Manju Devi &amp; Shri Brahamdutt Jangir</strong></p>
+          </div>
+          <div class="family-sub-group">
+            <span class="family-sub-role">Groom's Parents (New Delhi):</span>
+            <p class="family-block-names"><strong>Smt. Anita Devi &amp; Shri Mahavir Prasad Jangir</strong></p>
+          </div>
+          <p class="family-all-relatives">All Relatives &amp; Friends</p>
+        </div>
+
+        <!-- 2. Samdhi Pariwar -->
+        <div class="family-section-block">
+          <h4 class="family-block-kicker" data-i18n="samdhi_parivar_title">SAMDHI PARIWAR</h4>
+          <p class="family-block-names">
+            Shri Brahamdutt Ji, Mahavir Prasad Ji &amp; Entire Jangir Pariwar
+          </p>
+        </div>
+
+        <!-- 3. Maternal Request (Nanera) -->
+        <div class="family-section-block">
+          <h4 class="family-block-kicker" data-i18n="maternal_req_title">MATERNAL BLESSINGS</h4>
+          <p class="family-block-names">
+            Jangir Pariwar
+          </p>
+        </div>
+
+        <!-- 4. Sweet Request (Bal Manuhar) -->
+        <div class="family-section-block">
+          <h4 class="family-block-kicker" data-i18n="sweet_req_title">SWEET REQUEST</h4>
+          <p class="family-block-names">
+            Pankaj, Ayaan, Riya, Aarav &amp; All Youngsters
+          </p>
+        </div>
+
+        <!-- 5. Special Request & Assistance -->
+        <div class="family-section-block">
+          <h4 class="family-block-kicker" data-i18n="special_req_title">SPECIAL REQUEST &amp; HOSPITALITY</h4>
+          <p class="family-block-names">
+            Pankaj Jangir &amp; Family
+          </p>
+          <p class="family-help-phones">
+            Brahamdutt Jangir: +91 7015970091 &bull; Pankaj Jangir: +91 9518144103
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Neon Glowing Script Names -->
+      <div class="velvet-couple-signature">
+        <p class="signature-groom">Divesh</p>
+        <span class="signature-amp">&amp;</span>
+        <p class="signature-bride">Tamanna</p>
+      </div>
+
+      <!-- Golden Heart Flourish -->
+      <div class="velvet-heart-seam">
+        <i></i><span>♥</span><i></i>
+      </div>
+
+      <div class="velvet-handcrafted-line">
+        <p class="handcrafted-lead">Handcrafted for</p>
+        <p class="handcrafted-names">DIVESH &amp; TAMANNA</p>
+        <p class="handcrafted-city">Sirsa (Haryana)</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════ -->
+      <!-- CREATOR CREDIT & CLEAN WHATSAPP CTA (BY DHARUV)                -->
+      <!-- ══════════════════════════════════════════════════════════════ -->
+      <div class="creator-showcase-box">
+        <div class="creator-cta-card">
+          <div class="creator-crest-ring">❖</div>
+          <h3 class="creator-cta-title" data-i18n="cta_title">Create Your Wedding Invitation</h3>
+          <p class="creator-crafted-by" data-i18n="crafted_by_dharuv">Designed &amp; Handcrafted with Love by <strong>Dharuv</strong></p>
+          
+          <a href="https://wa.me/919996461616?text=Hi%20Dharuv!%20I%20loved%20this%20royal%20wedding%20invitation%20website%20and%20would%20like%20to%20get%20one%20created." target="_blank" rel="noopener noreferrer" class="creator-whatsapp-btn">
+            <svg class="wa-chat-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/>
+            </svg>
+            <span data-i18n="make_your_invite_btn">WhatsApp Dharuv • 9996461616</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- External Confetti Utility and Main Script -->
+  <script src="js/confetti.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
