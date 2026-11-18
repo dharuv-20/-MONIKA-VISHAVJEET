@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+
+[build.environment]
+  NETLIFY_COLLAB_DISABLED = "true"
+
+[context.deploy-preview]
+  environment = { NETLIFY_COLLAB_DISABLED = "true" }
+
+[context.branch-deploy]
+  environment = { NETLIFY_COLLAB_DISABLED = "true" }
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Netlify-Disable-Drawer = "true"

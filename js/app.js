@@ -757,4 +757,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ════════════════════════════════════════════════════════════════
+  // 10. REMOVE NETLIFY DRAWER / BADGE IF INJECTED
+  // ════════════════════════════════════════════════════════════════
+  function purgeNetlifyBadge() {
+    const netlifySelectors = [
+      'netlify-drawer',
+      '#netlify-drawer',
+      '[data-netlify-drawer]',
+      '.netlify-feedback-badge',
+      '[class*="netlify-drawer"]',
+      'iframe[title*="Netlify" i]',
+      'iframe[src*="netlify" i]'
+    ];
+    netlifySelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => el.remove());
+    });
+  }
+
+  purgeNetlifyBadge();
+  const netlifyPurgeObserver = new MutationObserver(() => purgeNetlifyBadge());
+  netlifyPurgeObserver.observe(document.documentElement, { childList: true, subtree: true });
+
 });
