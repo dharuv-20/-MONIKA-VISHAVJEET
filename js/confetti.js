@@ -22,7 +22,7 @@ function triggerConfetti(originX, originY) {
     height = canvas.height = window.innerHeight;
   });
 
-  const colors = ['#c9963e', '#e8c07a', '#ffd678', '#b31b32', '#fffdfb', '#5a1f2c', '#f06292', '#e91e63'];
+  const colors = ['#c59b3f', '#e5c158', '#ffd678', '#134e3e', '#1b634f', '#0c3227', '#ffffff', '#e91e63', '#fae19c'];
   const isTouchBurst = originX !== undefined && originY !== undefined;
   const confettiCount = isTouchBurst ? 65 : 120;
   const particles = [];

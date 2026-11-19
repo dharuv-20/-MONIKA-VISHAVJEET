@@ -1,15 +1,14 @@
 /**
  * ══════════════════════════════════════════════════════════════════
  * ROYAL WEDDING INVITATION - CLIENT LOGIC & ANIMATIONS
- * Divesh & Tamanna • Sirsa (Haryana) • 11th December 2026
+ * Monika & Vishavjeet • Gurugram (Haryana) • 4th December 2026
  *
  * Features:
  * - Envelope Video: Paused on first frame -> Tap to Play -> Fade Out
  * - Floating "SCROLL DOWN" & Background Audio Controller
  * - Delicate Small Petals Canvas (subtle, non-intrusive)
  * - Interactive Scratch Card & 4-Tile Countdown (दिन/घंटे/मिनट/सेकंड)
- * - Arch Moments Gallery Slider
- * - Three-Card RSVP Form with WhatsApp Integration (+91 7015970091)
+ * - Three-Card RSVP Form with WhatsApp Integration (+91 9910380122)
  * - English & Hindi Dual-Language Real-time Switcher
  * ══════════════════════════════════════════════════════════════════
  */
@@ -186,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     envelopeOverlay.addEventListener('click', openEnvelope);
   }
 
-  // Floating "SCROLL DOWN" Button Handler
+  // Floating "SCROLL DOWN" Button Handler & Auto-hide on Scroll
   if (scrollDownBtn) {
     scrollDownBtn.addEventListener('click', () => {
       const scratchSec = document.getElementById('scratch-section');
@@ -194,13 +193,21 @@ document.addEventListener('DOMContentLoaded', () => {
         scratchSec.scrollIntoView({ behavior: 'smooth' });
       }
     });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        scrollDownBtn.classList.add('scrolled-hidden');
+      } else {
+        scrollDownBtn.classList.remove('scrolled-hidden');
+      }
+    }, { passive: true });
   }
 
   // ════════════════════════════════════════════════════════════════
-  // 3B. INTERACTIVE TOUCH / TAP CONFETTI BURST ON PHOTOS & CARDS
+  // 3B. INTERACTIVE TOUCH / TAP CONFETTI BURST
   // ════════════════════════════════════════════════════════════════
-  const interactivePhotos = document.querySelectorAll('.interactive-tap-photo, .moment-arch-card, .celebrate-couple-img-box');
-  interactivePhotos.forEach(photo => {
+  const interactiveElements = document.querySelectorAll('.interactive-tap-photo, .hero-palace-frame, .little-stars-card, .formal-card-code-frame');
+  interactiveElements.forEach(el => {
     const handleTapBurst = (e) => {
       if (typeof triggerConfetti === 'function') {
         const clientX = e.touches && e.touches.length > 0 ? e.touches[0].clientX : (e.clientX || window.innerWidth / 2);
@@ -208,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerConfetti(clientX, clientY);
       }
     };
-    photo.addEventListener('click', handleTapBurst);
+    el.addEventListener('click', handleTapBurst);
   });
 
   // ════════════════════════════════════════════════════════════════
@@ -225,21 +232,20 @@ document.addEventListener('DOMContentLoaded', () => {
       pHeight = petalCanvas.height = window.innerHeight;
     });
 
-    // Gentle count and delicate small sizes (2.5px to 5.5px)
     const petalCount = 18;
     const petals = [];
     const petalColors = [
-      { fill: 'rgba(201, 42, 66, 0.75)' },
-      { fill: 'rgba(230, 57, 70, 0.70)' },
-      { fill: 'rgba(244, 162, 97, 0.72)' },
-      { fill: 'rgba(233, 196, 106, 0.68)' }
+      { fill: 'rgba(197, 155, 63, 0.75)' },  // Royal Gold
+      { fill: 'rgba(230, 57, 70, 0.70)' },   // Rose Petal
+      { fill: 'rgba(19, 78, 62, 0.72)' },   // Royal Emerald
+      { fill: 'rgba(250, 225, 156, 0.68)' }  // Champagne Gold
     ];
 
     for (let i = 0; i < petalCount; i++) {
       petals.push({
         x: Math.random() * pWidth,
         y: Math.random() * pHeight - pHeight,
-        size: Math.random() * 3 + 2.5, // Dainty, natural leaf/petal size
+        size: Math.random() * 3 + 2.5,
         color: petalColors[Math.floor(Math.random() * petalColors.length)],
         speedY: Math.random() * 1.1 + 0.6,
         speedX: Math.random() * 0.8 - 0.4,
@@ -344,14 +350,14 @@ document.addEventListener('DOMContentLoaded', () => {
     sCtx.strokeRect(10, 10, sWidth - 20, sHeight - 20);
 
     // Clean text on the foil
-    sCtx.fillStyle = '#4a2608';
+    sCtx.fillStyle = '#0c3227';
     sCtx.font = '700 13px "Tenor Sans", sans-serif';
     sCtx.textAlign = 'center';
     sCtx.letterSpacing = '3px';
     sCtx.fillText('SCRATCH WITH FINGER', sWidth / 2, sHeight / 2 - 8);
 
     sCtx.font = 'italic 14px "Cormorant Garamond", serif';
-    sCtx.fillStyle = '#6e3c0f';
+    sCtx.fillStyle = '#114c3c';
     sCtx.fillText('to reveal the wedding date', sWidth / 2, sHeight / 2 + 14);
   }
 
@@ -443,9 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ════════════════════════════════════════════════════════════════
-  // 6. 4-TILE COUNTDOWN TIMER (11TH DECEMBER 2026, 08:15 PM)
+  // 6. 4-TILE COUNTDOWN TIMER (4TH DECEMBER 2026, 08:00 PM)
   // ════════════════════════════════════════════════════════════════
-  const targetDate = new Date('2026-12-11T20:15:00+05:30').getTime();
+  const targetDate = new Date('2026-12-04T20:00:00+05:30').getTime();
   const cdDays = document.getElementById('cd-days');
   const cdHours = document.getElementById('cd-hours');
   const cdMinutes = document.getElementById('cd-minutes');
@@ -478,53 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCountdown();
 
   // ════════════════════════════════════════════════════════════════
-  // 7. ARCH MOMENTS GALLERY (TOUCH SWIPE)
-  // ════════════════════════════════════════════════════════════════
-  const momentCards = document.querySelectorAll('.moment-arch-card');
-  const mDots = document.querySelectorAll('.moment-dots .mdot');
-  let currentMomentIndex = 0;
-
-  function setMoment(index) {
-    if (index < 0) index = momentCards.length - 1;
-    if (index >= momentCards.length) index = 0;
-    currentMomentIndex = index;
-
-    momentCards.forEach((c, idx) => {
-      c.classList.toggle('active', idx === currentMomentIndex);
-    });
-
-    mDots.forEach((dot, idx) => {
-      dot.classList.toggle('active', idx === currentMomentIndex);
-    });
-  }
-
-  mDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.getAttribute('data-index'), 10);
-      setMoment(idx);
-    });
-  });
-
-  const momentsDeck = document.getElementById('photo-deck');
-  if (momentsDeck) {
-    let tStartX = 0;
-    momentsDeck.addEventListener('touchstart', (e) => {
-      tStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    momentsDeck.addEventListener('touchend', (e) => {
-      const tEndX = e.changedTouches[0].screenX;
-      const diff = tEndX - tStartX;
-      if (diff > 40) {
-        setMoment(currentMomentIndex - 1);
-      } else if (diff < -40) {
-        setMoment(currentMomentIndex + 1);
-      }
-    }, { passive: true });
-  }
-
-  // ════════════════════════════════════════════════════════════════
-  // 8. RSVP FORM (DIVESH & TAMANNA • HOST: +91 7015970091)
+  // 7. RSVP FORM (MONIKA & VISHAVJEET • HOST: +91 9910380122)
   // ════════════════════════════════════════════════════════════════
   const rsvpForm = document.getElementById('rsvp-form');
   const songInput = document.getElementById('dj-song-input');
@@ -552,10 +512,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const attendanceEl = document.querySelector('input[name="attendance"]:checked');
       const attendance = attendanceEl ? attendanceEl.value : "Yes, I'll be there";
       const teamEl = document.querySelector('input[name="team"]:checked');
-      const team = teamEl ? teamEl.value : "Team Groom";
+      const team = teamEl ? teamEl.value : "Team Bride";
       const song = songInput ? songInput.value.trim() : "";
 
-      let text = `*ROYAL WEDDING RSVP - DIVESH & TAMANNA*\n`;
+      let text = `*ROYAL WEDDING RSVP - MONIKA & VISHAVJEET*\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `*Guest Name:* ${name}\n`;
       text += `*Phone:* ${phone}\n`;
@@ -565,10 +525,10 @@ document.addEventListener('DOMContentLoaded', () => {
         text += `*DJ Song Request:* ${song}\n`;
       }
       text += `━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-      text += `Sent via Divesh & Tamanna Wedding Portal`;
+      text += `Sent via Monika & Vishavjeet Wedding Portal`;
 
       const encodedText = encodeURIComponent(text);
-      const hostPhoneNumber = '917015970091';
+      const hostPhoneNumber = '919910380122';
       const waUrl = `https://wa.me/${hostPhoneNumber}?text=${encodedText}`;
 
       window.open(waUrl, '_blank');
@@ -576,26 +536,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ════════════════════════════════════════════════════════════════
-  // 9. DUAL LANGUAGE SWITCHER (ENGLISH & HINDI)
+  // 8. DUAL LANGUAGE SWITCHER (ENGLISH & HINDI)
   // ════════════════════════════════════════════════════════════════
   const translations = {
     en: {
       opening_welcome: "The Royal Wedding Celebration",
       shubh_vivah_kicker: "॥ SHUBH VIVAH ॥",
-      shri_ganesh_mantra: "॥ श्री गणेशाय नमः ॥",
+      shri_ganesh_mantra: "!! ॐ श्री गणेशाय नमः !!",
+      shloka_1: "विघ्न हरण मंगल करण, श्री गणपति जी महाराज |\nप्रथम निमंत्रण आपको, पूरण कीजै काज ||",
+      shloka_2: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः ।\nनिर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ।।",
       tap_to_reveal: "Tap to Open Invitation",
       scroll_down: "SCROLL DOWN",
-      you_are_invited: "YOU ARE INVITED\nTO THE ROYAL WEDDING OF",
-      hero_couple_names: "DIVESH & TAMANNA",
-      eternal_union_lead: "An Eternal Union of Love & Togetherness",
-      hero_date_place: "11TH DECEMBER 2026 • SIRSA (HARYANA)",
-      blessing_grandparents: "With the heavenly blessings of",
-      formal_invite_line: "we joyfully invite you to celebrate the wedding ceremony of our beloved son",
-      groom_parents_line: "Son of Smt. Anita Devi & Shri Mahavir Prasad Jangir",
+      wedding_invitation_header: "WEDDING INVITATION",
+      hero_wedding_date: "Friday, 4th December, 2026",
+      hero_venue_city: "Gurugram (Haryana)",
+      cordial_kicker: "A Cordial Invitation From",
+      cordial_host_name: "Smt. Kamlesh Kumari",
+      cordial_relation: "(W/o Late Sh. Baldev Singh (SDO))",
+      cordial_address: "257/12, Hans Enclave, Gurugram (Hr.)",
+      hero_couple_names: "MONIKA & VISHAVJEET",
+      blessing_grandparents: "With the heavenly blessings of elders",
+      host_title: "Smt. Bhateri Devi (W/o Late Sh. Hawa Singh)",
+      formal_invite_line: "solicits your gracious presence on the auspicious occasion of the Wedding Ceremony of her beloved granddaughter",
+      bride_parents_line: "Daughter of Smt. Kamlesh Kumari & Late Sh. Baldev Singh (SDO)",
+      groom_parents_line: "Son of Smt. Saroj Bala & Sh. Dilbag Singh, R/o Thol, Kurukshetra",
       weds_label: "weds",
-      bride_parents_line: "Daughter of Smt. Manju Devi & Shri Brahamdutt Jangir",
-      bride_grandparents_line: "Granddaughter of Smt. Bhagwani Devi & Late Shri Rati Ram Jangir",
-      formal_date_lead: "Friday, 11th December, 2026",
+      formal_date_lead: "On Friday, 4th December, 2026 (as per programme)",
+      formal_venue_name: "Vittorio Banquet & Lawn",
+      formal_venue_address: "Old Delhi Road, Near Atul Kataria Chowk, Gurugram (Hr.)",
       save_the_date: "SAVE THE DATE",
       reveal_our_big_day: "Reveal Our Big Day",
       scratch_instruction: "Scratch the card to reveal",
@@ -607,20 +575,26 @@ document.addEventListener('DOMContentLoaded', () => {
       hours_txt: "HOURS",
       minutes_txt: "MINS",
       seconds_txt: "SECS",
-      glimpse_kicker: "A GLIMPSE OF US",
-      moments_title: "Our Beautiful Moments",
-      moment_quote: '"A moment captured in time, forever in our hearts"',
-      unfolds_kicker: "THE CELEBRATION UNFOLDS",
-      celebrations_await: "Celebrations Await",
-      ev1_title: "Haldi Ceremony",
-      ev2_title: "Mehendi Ceremony",
-      ev3_title: "Sangeet & Musical Night",
-      ev4_title: "Royal Wedding & Reception",
-      dress_code_label: "DRESS CODE",
+      unfolds_kicker: "GOLDEN MOMENTS",
+      celebrations_await: "Programme & Schedule",
+      ev1_title: "Haldi & Mehendi",
+      ev1_date: "Thursday, 3rd December, 2026",
+      ev1_time: "04:00 PM onwards",
+      ev1_venue: "At Residence: 257/12, Hans Enclave, Gurugram (Hr.)",
+      ev2_title: "Wedding Ceremony & Reception",
+      ev2_date: "Friday, 4th December, 2026",
+      dinner_time: "Dinner: 07:00 PM",
+      barat_time: "Reception of Barat: 08:00 PM",
+      doli_time: "Doli: Taaron Ki Chhaon Mein",
+      scan_for_location: "Scan for Location",
+      scan_instruction: "Scan with any smartphone camera or tap below",
+      open_in_maps: "Open in Google Maps",
       view_location: "View on Map",
-      join_kicker: "JOIN THE CELEBRATION",
-      celebrate_title: "Celebrate With Us",
-      celebrate_para: "A celebration full of surprises, laughter, friendly rivalries, crazy dancing, and love that brings us all together. Come dressed to celebrate, ready to dance, and prepared for unforgettable memories!",
+      stars_kicker: "CUTE INVITATION FROM OUR FAMILY LITTLE STARS",
+      stars_names: "Kashvi • Naitik • Rihan",
+      stars_quote: "\"Sweet little steps, big warm smiles! We invite you with all our hearts to our beloved Didi & Jiju's wedding celebration!\"",
+      rsvp_heading: "R.S.V.P.",
+      best_compliments: "Best Compliments From: All Relatives & Friends",
       guest_details_title: "Guest Details",
       your_name_caps: "YOUR NAME",
       phone_number_caps: "PHONE NUMBER",
@@ -636,40 +610,48 @@ document.addEventListener('DOMContentLoaded', () => {
       dj_song_label: "WHICH SONG SHOULD THE DJ PLAY FOR YOU?",
       need_ideas_prompt: "Need ideas? Tap one",
       send_rsvp_btn: "SEND RSVP",
-      contact_lead: "For anything at all, call or WhatsApp our Hospitality Team",
+      contact_lead: "For RSVP & Hospitality, contact our family hosts",
       call_btn: "CALL",
       whatsapp_btn: "WHATSAPP",
-      maternal_req_title: "MATERNAL REQUEST",
-      samdhi_parivar_title: "SAMDHI PARIWAR",
-      sweet_req_title: "SWEET REQUEST",
-      warm_welcome_title: "WARM WELCOME",
-      special_req_title: "SPECIAL REQUEST",
-      for_any_help_title: "FOR ANY HELP",
+      warm_welcome_title: "A CORDIAL INVITATION",
+      host_block_title: "HOST",
+      bride_family_title: "BRIDE'S FAMILY",
+      groom_family_title: "GROOM'S FAMILY",
+      little_stars_title: "OUR LITTLE STARS",
+      special_req_title: "R.S.V.P.",
       crafted_by_dharuv: "Designed & Handcrafted with Love by Dharuv",
       cta_title: "Create Your Wedding Invitation",
-      make_your_invite_btn: "WhatsApp Dharuv • 9996461616",
+      make_your_invite_btn: "Create Your Invitation • 9996461616",
       music_toggle_hint: "Music"
     },
     hi: {
       opening_welcome: "शाही विवाह महोत्सव",
       shubh_vivah_kicker: "॥ शुभ विवाह ॥",
-      shri_ganesh_mantra: "॥ श्री गणेशाय नमः ॥",
+      shri_ganesh_mantra: "!! ॐ श्री गणेशाय नमः !!",
+      shloka_1: "विघ्न हरण मंगल करण, श्री गणपति जी महाराज |\nप्रथम निमंत्रण आपको, पूरण कीजै काज ||",
+      shloka_2: "वक्रतुण्ड महाकाय सूर्यकोटि समप्रभः ।\nनिर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ।।",
       tap_to_reveal: "निमंत्रण पत्र खोलने के लिए स्पर्श करें",
       scroll_down: "नीचे स्क्रॉल करें",
-      you_are_invited: "शुभ विवाह निमंत्रण\nपावन मांगलिक समारोह",
-      hero_couple_names: "दिवेश एवं तमन्ना",
-      eternal_union_lead: "दो हृदयों का पावन एवं अटूट बंधन",
-      hero_date_place: "शुक्रवार, 11 दिसंबर 2026 • सिरसा (हरियाणा)",
+      wedding_invitation_header: "शुभ विवाह निमंत्रण",
+      hero_wedding_date: "शुक्रवार, 4 दिसंबर, 2026",
+      hero_venue_city: "गुरुग्राम (हरियाणा)",
+      cordial_kicker: "दर्शनाभिलाषी",
+      cordial_host_name: "श्रीमती कमलेश कुमारी",
+      cordial_relation: "(पत्नी स्व. श्री बलदेव सिंह (एस.डी.ओ.))",
+      cordial_address: "257/12, हंस एन्क्लेव, गुरुग्राम (हरियाणा)",
+      hero_couple_names: "मोनिका संग विशवजीत",
       blessing_grandparents: "परम पूज्य पूर्वजों के शुभाशीर्वाद से",
-      formal_invite_line: "श्रीमती मंजू देवी एवं श्री ब्रह्मदत्त जांगिड़ सपरिवार अपनी सुपुत्री के पाणिग्रहण संस्कार में आपको सादर आमंत्रित करते हैं",
-      groom_parents_line: "सुपुत्र: श्रीमती अनिता देवी एवं श्री महावीर प्रसाद जांगिड़",
+      host_title: "श्रीमती भतेरी देवी (पत्नी स्व. श्री हवा सिंह)",
+      formal_invite_line: "अपनी प्रिय पौत्री के पाणिग्रहण संस्कार के पावन अवसर पर आपकी गरिमामयी उपस्थिति सादर प्रार्थनीय है",
+      bride_parents_line: "सुपुत्री: श्रीमती कमलेश कुमारी एवं स्व. श्री बलदेव सिंह (एस.डी.ओ.)",
+      groom_parents_line: "सुपुत्र: श्रीमती सरोज बाला एवं श्री दिलबाग सिंह, निवासी थोल, कुरुक्षेत्र",
       weds_label: "संग",
-      bride_parents_line: "सुपुत्री: श्रीमती मंजू देवी एवं श्री ब्रह्मदत्त जांगिड़",
-      bride_grandparents_line: "पौत्री: श्रीमती भगवानी देवी एवं स्वर्गीय श्री रति राम जांगिड़",
-      formal_date_lead: "शुक्रवार, 11 दिसंबर, 2026",
+      formal_date_lead: "शुक्रवार, 4 दिसंबर, 2026 (क्रमानुसार)",
+      formal_venue_name: "विटोरियो बैंक्वेट एवं लॉन",
+      formal_venue_address: "ओल्ड दिल्ली रोड, अतुल कटारिया चौक के पास, गुरुग्राम (हरियाणा)",
       save_the_date: "शुभ विवाह तिथि",
       reveal_our_big_day: "विवाह तिथि जानें",
-      scratch_instruction: "विवाह की शुभ तिथि देखने के लिए स्क्रैच करें",
+      scratch_instruction: "शुभ तिथि देखने के लिए स्क्रैच करें",
       scratch_here: "यहाँ स्क्रैच करें",
       secret_weekday: "शुक्रवार",
       secret_month: "दिसंबर",
@@ -678,20 +660,26 @@ document.addEventListener('DOMContentLoaded', () => {
       hours_txt: "घंटे",
       minutes_txt: "मिनट",
       seconds_txt: "सेकंड",
-      glimpse_kicker: "मधुर स्मृतियाँ",
-      moments_title: "स्नेह के पल",
-      moment_quote: '"विवाह पूर्व के कुछ अविस्मरणीय और प्रेम भरे क्षण"',
       unfolds_kicker: "मांगलिक कार्यक्रम",
-      celebrations_await: "उत्सव का शुभारंभ",
-      ev1_title: "हल्दी की रस्म",
-      ev2_title: "मेहंदी उत्सव",
-      ev3_title: "संगीत एवं सुरमई शाम",
-      ev4_title: "शुभ विवाह एवं प्रीतिभोज",
-      dress_code_label: "पहनावा (ड्रेस कोड)",
+      celebrations_await: "शुभ कार्यक्रम विवरण",
+      ev1_title: "हल्दी एवं मेहंदी",
+      ev1_date: "गुरुवार, 3 दिसंबर, 2026",
+      ev1_time: "सांय 04:00 बजे से",
+      ev1_venue: "निज निवास: 257/12, हंस एन्क्लेव, गुरुग्राम (हरियाणा)",
+      ev2_title: "शुभ विवाह एवं प्रीतिभोज",
+      ev2_date: "शुक्रवार, 4 दिसंबर, 2026",
+      dinner_time: "प्रीतिभोज: सांय 07:00 बजे",
+      barat_time: "बारात स्वागत: रात्रि 08:00 बजे",
+      doli_time: "डोली: तारों की छांव में",
+      scan_for_location: "लोकेशन के लिए स्कैन करें",
+      scan_instruction: "स्मार्टफोन कैमरे से स्कैन करें या नीचे टैप करें",
+      open_in_maps: "गूगल मैप पर लोकेशन देखें",
       view_location: "मैप पर लोकेशन देखें",
-      join_kicker: "उत्सव में पधारें",
-      celebrate_title: "हमारे साथ उत्सव मनाएं",
-      celebrate_para: "हर्ष, उल्लास, हास्य, मधुर प्रतिस्पर्धा और अद्भुत नृत्य से भरा एक शाही उत्सव! आइए, सपरिवार पधारकर इस मांगलिक बेला को अविस्मरणीय बनाएं।",
+      stars_kicker: "बाल मनुहार (हमारे नन्हें सितारे)",
+      stars_names: "काश्वी • नैतिक • रिहान",
+      stars_quote: "\"मीठी-मीठी खुशियों संग, नन्हें-नन्हें कदम! हमारी प्यारी दीदी और जीजू की शादी में आप सभी का हार्दिक स्वागत है!\"",
+      rsvp_heading: "आर.एस.वी.पी. / विनीत",
+      best_compliments: "शुभकामनाएं: समस्त रिश्तेदार एवं मित्रगण",
       guest_details_title: "अतिथि विवरण",
       your_name_caps: "आपका शुभ नाम",
       phone_number_caps: "मोबाइल नंबर",
@@ -707,18 +695,18 @@ document.addEventListener('DOMContentLoaded', () => {
       dj_song_label: "डीजे आपके लिए कौन सा गाना बजाए?",
       need_ideas_prompt: "गाने का सुझाव चाहिए? किसी एक को चुनें",
       send_rsvp_btn: "आरएसवीपी भेजें",
-      contact_lead: "आरएसवीपी एवं किसी भी व्यवस्था के लिए मुख्य मेजबान से संपर्क करें",
+      contact_lead: "आरएसवीपी एवं स्वागत सत्कार हेतु हमारे परिवार से संपर्क करें",
       call_btn: "कॉल करें",
       whatsapp_btn: "व्हाट्सएप",
-      maternal_req_title: "ममेरी पक्ष (नानका)",
-      samdhi_parivar_title: "समधी परिवार",
-      sweet_req_title: "बाल मनुहार",
-      warm_welcome_title: "स्वागतातुर",
-      special_req_title: "विशेष मनुहार",
-      for_any_help_title: "सहयोग एवं व्यवस्था",
+      warm_welcome_title: "सादर निमंत्रण",
+      host_block_title: "मेजबान",
+      bride_family_title: "वधू पक्ष",
+      groom_family_title: "वर पक्ष",
+      little_stars_title: "बाल मनुहार",
+      special_req_title: "आर.एस.वी.पी. (विनीत)",
       crafted_by_dharuv: "धारुव द्वारा सप्रेम निर्मित एवं डिज़ाइन किया गया",
       cta_title: "अपना डिजिटल शादी का निमंत्रण बनवाएं",
-      make_your_invite_btn: "व्हाट्सएप धारुव • 9996461616",
+      make_your_invite_btn: "अपना निमंत्रण बनवाएं • 9996461616",
       music_toggle_hint: "संगीत"
     }
   };
@@ -758,7 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ════════════════════════════════════════════════════════════════
-  // 10. REMOVE NETLIFY DRAWER / BADGE IF INJECTED
+  // 9. REMOVE NETLIFY DRAWER / BADGE IF INJECTED
   // ════════════════════════════════════════════════════════════════
   function purgeNetlifyBadge() {
     const netlifySelectors = [

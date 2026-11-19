@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="48" fill="#0c3227" stroke="#c59b3f" stroke-width="3" />
+  <circle cx="50" cy="50" r="42" fill="none" stroke="#e5c158" stroke-width="1" stroke-dasharray="3,2" />
+  <g fill="#c59b3f" transform="translate(25, 20) scale(0.5)">
+    <path d="M50 0 C25 0 10 20 10 38 C10 52 20 62 30 70 C24 76 18 86 20 94 C22 100 28 102 34 98 C40 94 44 86 46 80 C50 82 54 82 58 80 C60 86 64 94 70 98 C76 102 82 100 84 94 C86 86 80 76 74 70 C84 62 94 52 94 38 C94 20 79 0 50 0 Z" fill="none" stroke="#e5c158" stroke-width="2"/>
+    <text x="50" y="65" font-family="'Cinzel', serif" font-size="28" font-weight="bold" fill="#fae19c" text-anchor="middle">MV</text>
+  </g>
+</svg>
