@@ -536,6 +536,90 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ════════════════════════════════════════════════════════════════
+  
+  // ════════════════════════════════════════════════════════════════
+  // 7. OUR BEAUTIFUL MOMENTS GALLERY (SLIDER / DECK)
+  // ════════════════════════════════════════════════════════════════
+  const momentCards = document.querySelectorAll('.moment-arch-card');
+  const momentDots = document.querySelectorAll('.moment-dots .mdot');
+  const deckPrevBtn = document.getElementById('deck-prev-btn');
+  const deckNextBtn = document.getElementById('deck-next-btn');
+  let currentMomentIndex = 0;
+  let momentTimer = null;
+
+  function setMoment(index) {
+    if (momentCards.length === 0) return;
+    if (index < 0) index = momentCards.length - 1;
+    if (index >= momentCards.length) index = 0;
+    currentMomentIndex = index;
+
+    momentCards.forEach((c, i) => {
+      c.classList.toggle('active', i === currentMomentIndex);
+    });
+
+    momentDots.forEach((d, i) => {
+      d.classList.toggle('active', i === currentMomentIndex);
+    });
+  }
+
+  function startAutoMoment() {
+    clearInterval(momentTimer);
+    momentTimer = setInterval(() => {
+      setMoment(currentMomentIndex + 1);
+    }, 4500);
+  }
+
+  momentDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.getAttribute('data-index'), 10);
+      setMoment(idx);
+      startAutoMoment();
+    });
+  });
+
+  if (deckPrevBtn) {
+    deckPrevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMoment(currentMomentIndex - 1);
+      startAutoMoment();
+    });
+  }
+
+  if (deckNextBtn) {
+    deckNextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setMoment(currentMomentIndex + 1);
+      startAutoMoment();
+    });
+  }
+
+  const momentsDeck = document.getElementById('photo-deck');
+  if (momentsDeck) {
+    let tStartX = 0;
+    momentsDeck.addEventListener('touchstart', (e) => {
+      tStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    momentsDeck.addEventListener('touchend', (e) => {
+      const tEndX = e.changedTouches[0].screenX;
+      const diff = tEndX - tStartX;
+      if (diff > 40) {
+        setMoment(currentMomentIndex - 1);
+        startAutoMoment();
+      } else if (diff < -40) {
+        setMoment(currentMomentIndex + 1);
+        startAutoMoment();
+      }
+    }, { passive: true });
+
+    momentsDeck.addEventListener('click', () => {
+      setMoment(currentMomentIndex + 1);
+      startAutoMoment();
+    });
+
+    startAutoMoment();
+  }
+
   // 8. DUAL LANGUAGE SWITCHER (ENGLISH & HINDI)
   // ════════════════════════════════════════════════════════════════
   const translations = {
@@ -594,6 +678,10 @@ document.addEventListener('DOMContentLoaded', () => {
       stars_names: "Kashvi • Naitik • Rihan",
       stars_quote: "\"Sweet little steps, big warm smiles! We invite you with all our hearts to our beloved Didi & Jiju's wedding celebration!\"",
       rsvp_heading: "R.S.V.P.",
+      rsvp_hospitality_title: "R.S.V.P. & Hospitality",
+      glimpse_kicker: "A GLIMPSE OF US",
+      moments_title: "Our Beautiful Moments",
+      moment_quote: "\"Two souls with but a single thought, two hearts that beat as one.\"",
       best_compliments: "Best Compliments From: All Relatives & Friends",
       guest_details_title: "Guest Details",
       your_name_caps: "YOUR NAME",
@@ -679,6 +767,10 @@ document.addEventListener('DOMContentLoaded', () => {
       stars_names: "काश्वी • नैतिक • रिहान",
       stars_quote: "\"मीठी-मीठी खुशियों संग, नन्हें-नन्हें कदम! हमारी प्यारी दीदी और जीजू की शादी में आप सभी का हार्दिक स्वागत है!\"",
       rsvp_heading: "आर.एस.वी.पी. / विनीत",
+      rsvp_hospitality_title: "आर.एस.वी.पी. एवं स्वागत सत्कार",
+      glimpse_kicker: "शाही यादें",
+      moments_title: "हमारे खूबसूरत लम्हे",
+      moment_quote: "\"दो दिल, एक धड़कन, खुशियों का अनंत सफ़र...\"",
       best_compliments: "शुभकामनाएं: समस्त रिश्तेदार एवं मित्रगण",
       guest_details_title: "अतिथि विवरण",
       your_name_caps: "आपका शुभ नाम",

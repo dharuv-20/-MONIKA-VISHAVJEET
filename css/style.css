@@ -2578,3 +2578,123 @@ body.is-locked {
   display: block;
   filter: drop-shadow(0 2px 4px rgba(176, 136, 70, 0.25));
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO COUPLE PHOTO FRAME & MOMENTS GALLERY DECK ENHANCEMENTS
+   ══════════════════════════════════════════════════════════════════ */
+.hero-couple-photo-frame {
+  position: relative;
+  width: min(72vw, 240px);
+  aspect-ratio: 1 / 1.25;
+  margin: 0.8rem auto 1.3rem;
+  border-radius: 999px 999px 18px 18px;
+  overflow: hidden;
+  border: 4px solid #ffffff;
+  outline: 2px solid rgba(212, 175, 55, 0.85);
+  box-shadow: 0 16px 40px rgba(12, 50, 39, 0.22), 0 0 25px rgba(212, 175, 55, 0.35);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-couple-photo-frame:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 48px rgba(12, 50, 39, 0.28), 0 0 35px rgba(212, 175, 55, 0.5);
+}
+
+.hero-couple-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.moments-arch-deck-wrap {
+  position: relative;
+  max-width: 320px;
+  margin: 1.2rem auto 0;
+}
+
+.moments-deck {
+  position: relative;
+  aspect-ratio: 1 / 1.22;
+  margin: 0 auto;
+}
+
+.moment-arch-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px 999px 20px 20px;
+  overflow: hidden;
+  border: 4.5px solid #ffffff;
+  outline: 2px solid rgba(212, 175, 55, 0.75);
+  box-shadow: 0 16px 42px rgba(12, 50, 39, 0.2), 0 0 25px rgba(212, 175, 55, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.92) translateY(14px);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.45s ease;
+  cursor: pointer;
+}
+
+.moment-arch-card.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+  z-index: 5;
+}
+
+.moment-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.8rem 1rem 0.9rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(7, 33, 26, 0.88) 100%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.moment-tag {
+  font-family: var(--font-caps);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  color: #ffd885;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.deck-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(12, 50, 39, 0.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1.5px solid rgba(255, 216, 133, 0.75);
+  color: #ffd885;
+  font-size: 1.6rem;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s, background 0.2s;
+  user-select: none;
+}
+
+.deck-nav-btn:active {
+  transform: translateY(-50%) scale(0.92);
+}
+
+.deck-nav-btn.prev {
+  left: -14px;
+}
+
+.deck-nav-btn.next {
+  right: -14px;
+}
