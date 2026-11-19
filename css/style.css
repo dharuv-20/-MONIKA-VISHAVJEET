@@ -58,6 +58,11 @@ html {
   background-color: var(--cream-bg);
   color: var(--ink-primary);
   font-family: var(--font-serif);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 body {
@@ -66,6 +71,19 @@ body {
   overflow-x: hidden;
   background: var(--cream-bg);
   -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 body.is-locked {
@@ -883,6 +901,134 @@ body.is-locked {
   background: rgba(255, 255, 255, 0.45);
   border-radius: 12px;
   border: 1px solid rgba(176, 136, 70, 0.25);
+}
+
+/* Sacred Lord Ganesha Emblem in Formal Card */
+.ganesha-emblem-wrap {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(250, 240, 220, 0.45) 70%, transparent 100%);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.ganesha-sacred-img {
+  width: 52px;
+  max-width: 52px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 2px 8px rgba(197, 155, 63, 0.35));
+}
+
+.formal-shri-ganesh {
+  font-family: var(--font-deva);
+  font-size: 1.15rem;
+  color: #114c3c;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.75rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.formal-blessings-block {
+  margin-bottom: 1.1rem;
+}
+
+.formal-blessing-lead {
+  font-family: var(--font-serif);
+  font-size: 0.86rem;
+  color: #6a5746;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+
+.formal-elders-names {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0c3227;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.formal-elders-relation {
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: #6a5746;
+}
+
+.formal-invite-text {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #3b2c28;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.formal-couple-highlight {
+  margin: 0.85rem 0;
+  padding: 0.35rem 0.5rem;
+}
+
+.formal-person-name {
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 5.5vw, 2.5rem);
+  color: #8c2018;
+  line-height: 1.15;
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.02em;
+}
+
+.formal-parentage {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: #2e2420;
+  line-height: 1.45;
+  margin-bottom: 0.2rem;
+}
+
+.formal-parentage strong {
+  color: #0c3227;
+}
+
+.formal-hometown {
+  font-family: var(--font-caps);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  color: #6a5746;
+  text-transform: uppercase;
+}
+
+.formal-weds-script {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.4rem 0;
+}
+
+.formal-weds-script .weds-word {
+  font-family: var(--font-script);
+  font-size: 1.65rem;
+  color: #c59b3f;
+  font-style: italic;
+}
+
+.formal-weds-script .weds-flourish {
+  color: #c59b3f;
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+.formal-venue-box {
+  margin-top: 0.85rem;
 }
 
 .formal-event-day {
